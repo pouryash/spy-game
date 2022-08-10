@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Spy-Game</string>
+    <string name="player_num">Number Of Players</string>
+    <string name="spies_num">Number Of Spies</string>
+    <string name="timer">timer</string>
+    <string name="start_game">Start</string>
+</resources>
