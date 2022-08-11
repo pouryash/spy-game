@@ -8,4 +8,6 @@
     <string name="specify_player_number">Specify the Number of players in the game</string>
     <string name="specify_spies_number">Specify the number of spies in the game</string>
     <string name="specify_game_time">Specify the time of the game</string>
+    <string name="return_card">Return your card</string>
+    <string name="choose_role_hint">Return your card and tap again to hide your card then pass the phone</string>
 </resources>

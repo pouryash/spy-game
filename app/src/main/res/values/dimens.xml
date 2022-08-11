@@ -9,7 +9,9 @@
     <dimen name="dimen_8">8sp</dimen>
     <dimen name="dimen_10">10sp</dimen>
     <dimen name="dimen_12">12sp</dimen>
+    <dimen name="dimen_14">14sp</dimen>
     <dimen name="dimen_16">16sp</dimen>
+    <dimen name="dimen_18">18sp</dimen>
     <dimen name="dimen_20">20sp</dimen>
     <dimen name="dimen_22">22sp</dimen>
     <dimen name="dimen_32">32sp</dimen>

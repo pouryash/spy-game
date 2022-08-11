@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="@dimen/margin_32"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    app:cardBackgroundColor="@color/secondary"
+    app:cardCornerRadius="@dimen/standard_margin_2x"
+    app:cardElevation="@dimen/standard_margin_x"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/img_circle_mark_top"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:src="@drawable/ic_circle"
+        android:layout_margin="@dimen/standard_margin_2x"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
+        android:id="@+id/img_question_mark"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_question_mark"
+        android:paddingTop="@dimen/margin_32"
+        android:paddingStart="@dimen/standard_margin_2x"
+        android:paddingEnd="@dimen/standard_margin_2x"
+        app:layout_constraintTop_toBottomOf="@id/img_circle_mark_top"
+        app:layout_constraintBottom_toTopOf="@id/img_circle_mark_bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
+        android:id="@+id/img_circle_mark_bottom"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:src="@drawable/ic_circle"
+        android:layout_margin="@dimen/standard_margin_2x"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

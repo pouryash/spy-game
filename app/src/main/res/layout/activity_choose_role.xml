@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main"
+    tools:context=".ChooseRoleActivity">
+
+    <TextView
+        android:id="@+id/txt_player_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/standard_margin_x"
+        tools:text="- Player 5 -"
+        android:textColor="@color/secondary"
+        android:textSize="@dimen/dimen_22"
+        app:layout_constraintBottom_toTopOf="@id/guideline_header"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <include
+        android:id="@+id/choose_role_default_root"
+        layout="@layout/choose_role_default"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/margin_32"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guideline_footer"
+        app:layout_constraintTop_toBottomOf="@id/guideline_header"/>
+
+    <include
+        android:id="@+id/choose_role_show_value_root"
+        layout="@layout/choose_role_show_value"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="invisible"
+        android:layout_margin="@dimen/margin_32"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guideline_footer"
+        app:layout_constraintTop_toBottomOf="@id/guideline_header"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_footer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.80" />
+
+    <TextView
+        android:id="@+id/txt_hint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/standard_margin_x"
+        android:text="@string/choose_role_hint"
+        android:textColor="@color/secondary"
+        android:layout_marginStart="@dimen/standard_margin_x"
+        android:layout_marginEnd="@dimen/standard_margin_x"
+        android:textSize="@dimen/dimen_18"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline_footer"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

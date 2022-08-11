@@ -47,6 +47,12 @@ class MainActivity : AppCompatActivity() {
     private fun setupViews() {
         sharedPreferenceManager = SharedPreferenceManager(this)
 
+        updateValues()
+
+        binding.btnStartGame.setOnClickListener {
+            startActivity(Intent(this, ChooseRoleActivity::class.java))
+        }
+
         binding.cardPlayerNum.setOnClickListener {
             var intent = Intent(this, ConfigActivity::class.java)
             intent.putExtra("title", resources.getString(R.string.specify_player_number))
@@ -70,8 +76,6 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("keyValue", Constants.TIMERS_NUM_VALUE)
             it.context.startActivity(intent)
         }
-
-        updateValues()
     }
 
     override fun onResume() {

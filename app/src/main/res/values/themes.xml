@@ -10,7 +10,7 @@
     <style name="configItemText" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/main</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textSize">@dimen/dimen_12</item>
+        <item name="android:textSize">@dimen/dimen_14</item>
     </style>
 
 </resources>
