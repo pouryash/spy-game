@@ -2,6 +2,7 @@ package com.pourya.spy_game
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import com.mcdev.quantitizerlibrary.AnimationStyle
 import com.mcdev.quantitizerlibrary.QuantitizerListener
@@ -66,6 +67,47 @@ class ConfigActivity : AppCompatActivity() {
         })
 
         binding.btnConfirmGameConfig.setOnClickListener {
+
+            val calculatedSpiesCount = sharedPreferenceManager.getInteger(Constants.PLAYERS_NUM_VALUE) / 3
+
+            if (keyValue == Constants.PLAYERS_NUM_VALUE && !(numValue.toInt() >= Constants.PLAYER_MIN_VALUE && numValue.toInt() <= Constants.PLAYER_MAX_VALUE)) {
+                Toast.makeText(
+                    this,
+                    "The number of players should be between " + Constants.PLAYER_MIN_VALUE + " and " + Constants.PLAYER_MAX_VALUE,
+                    Toast.LENGTH_LONG
+                ).show()
+                return@setOnClickListener
+            }
+
+            if (keyValue == Constants.SPIES_NUM_VALUE) {
+                if (numValue.toInt() > calculatedSpiesCount) {
+                    Toast.makeText(
+                        this,
+                        "The number of spies should not greater than " + calculatedSpiesCount,
+                        Toast.LENGTH_LONG
+                    ).show()
+                    return@setOnClickListener
+                }
+
+                if (numValue.toInt() < Constants.SPIES_MIN_VALUE) {
+                    Toast.makeText(
+                        this,
+                        "The number of spies should not less then " + Constants.SPIES_MIN_VALUE,
+                        Toast.LENGTH_LONG
+                    ).show()
+                    return@setOnClickListener
+                }
+            }
+
+            if (keyValue == Constants.PLAYERS_NUM_VALUE && (numValue.toInt() / 3) < sharedPreferenceManager.getInteger(Constants.SPIES_NUM_VALUE)) {
+                Toast.makeText(
+                    this,
+                    "The number of spies is more then " + numValue.toInt() / 3,
+                    Toast.LENGTH_LONG
+                ).show()
+                return@setOnClickListener
+            }
+
             sharedPreferenceManager.saveInteger(keyValue, numValue.toInt())
             this.finish()
         }

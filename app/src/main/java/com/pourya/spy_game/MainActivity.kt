@@ -30,9 +30,17 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        init()
         setupViews()
         updateValues()
 
+    }
+
+    private fun init() {
+        sharedPreferenceManager = SharedPreferenceManager(this)
+        sharedPreferenceManager.saveInteger(Constants.PLAYERS_NUM_VALUE, Constants.PLAYER_MIN_VALUE)
+        sharedPreferenceManager.saveInteger(Constants.SPIES_NUM_VALUE, Constants.SPIES_MIN_VALUE)
+        sharedPreferenceManager.saveInteger(Constants.TIMERS_NUM_VALUE, Constants.TIMER_MIN_VALUE)
     }
 
     private fun updateValues() {
@@ -45,8 +53,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupViews() {
-        sharedPreferenceManager = SharedPreferenceManager(this)
-
         updateValues()
 
         binding.btnStartGame.setOnClickListener {
