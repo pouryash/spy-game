@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.databinding.Bindable
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -28,6 +29,7 @@ class CategoryViewModel(val context: Context) : ViewModelObservable(), KoinCompo
     val sharedPreferenceManager: SharedPreferenceManager by inject()
     val categoryResponseLiveData = MutableLiveData<ApiResponse<ArrayList<Category>>>()
     val categoryLiveData = MutableLiveData<ArrayList<Category>>()
+    val shouldCloseLiveData: MutableLiveData<Boolean> = MutableLiveData()
 
     var id: Int? = null
 
@@ -51,16 +53,18 @@ class CategoryViewModel(val context: Context) : ViewModelObservable(), KoinCompo
     companion object {
 
         @JvmStatic
-        @BindingAdapter("bind:context", "bind:sharedPreferenceManager", "bind:categoryList")
+        @BindingAdapter("bind:context", "bind:sharedPreferenceManager", "bind:shouldCloseLiveData", "bind:categoryList")
         fun getRecyclerBinder(
             recyclerView: RecyclerView,
             context: Context,
             sharedPreferenceManager: SharedPreferenceManager,
+            shouldCloseLiveData:  MutableLiveData<Boolean>,
             categoryList: MutableLiveData<ArrayList<Category>>
         ) {
             val categories = ArrayList<Category>()
             val commentAdapter = CategoryAdapter(categories, context) {
                 sharedPreferenceManager.saveCategory(it)
+                shouldCloseLiveData.postValue(true)
             }
             val layoutManager =
                 GridLayoutManager(recyclerView.context, 3, GridLayoutManager.VERTICAL, false)

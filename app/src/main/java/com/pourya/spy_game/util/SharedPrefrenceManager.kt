@@ -10,23 +10,23 @@ class SharedPreferenceManager(context: Context) {
     private val sharedPreferences: SharedPreferences =
         context.getSharedPreferences(Constants.SPY_SHARED_PREF_NAME, Context.MODE_PRIVATE)
 
-    fun saveString(key : String, value: String) {
+    fun saveString(key: String, value: String) {
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
         editor.putString(key, value)
         editor.apply()
     }
 
-    fun getString(key : String): String? {
+    fun getString(key: String): String? {
         return sharedPreferences.getString(key, null)
     }
 
-    fun saveInteger(key : String, value: Int) {
+    fun saveInteger(key: String, value: Int) {
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
         editor.putInt(key, value)
         editor.apply()
     }
 
-    fun getInteger(key : String): Int {
+    fun getInteger(key: String): Int {
         return sharedPreferences.getInt(key, 0)
     }
 
@@ -55,6 +55,12 @@ class SharedPreferenceManager(context: Context) {
         }
 
         return category
+    }
+
+    fun clearKey(key: String) {
+        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+        editor.putString(key, "")
+        editor.apply()
     }
 
 }

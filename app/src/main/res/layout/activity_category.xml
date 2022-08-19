@@ -56,6 +56,7 @@
             app:categoryList="@{categoryViewModel.categoryLiveData}"
             app:context="@{categoryViewModel.context}"
             app:sharedPreferenceManager="@{categoryViewModel.sharedPreferenceManager}"
+            app:shouldCloseLiveData="@{categoryViewModel.shouldCloseLiveData}"
             tools:listitem="@layout/category_row"
             app:spanCount="3"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"

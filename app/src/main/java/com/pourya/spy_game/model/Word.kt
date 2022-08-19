@@ -10,10 +10,6 @@ data class Word(
     val id: Int,
 
     @Expose
-    @SerializedName("category_id")
-    val categoryId: Int,
-
-    @Expose
     @SerializedName("name")
     val name: String,
 

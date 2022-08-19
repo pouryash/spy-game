@@ -58,13 +58,10 @@ private fun offlineInterceptor(context: Context): Interceptor {
 private fun networkInterceptor(): Interceptor {
     return Interceptor { chain ->
         val response: Response = chain.proceed(chain.request())
-        val cacheControl = CacheControl.Builder()
-            .maxAge(2, TimeUnit.MINUTES)
-            .build()
+
         response.newBuilder()
             .removeHeader(HEADER_PRAGMA)
             .removeHeader(HEADER_CACHE_CONTROL)
-            .header(HEADER_CACHE_CONTROL, cacheControl.toString())
             .build()
     }
 }

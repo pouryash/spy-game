@@ -13,7 +13,6 @@ interface Api {
     fun getCategories(): Observable<Response<ArrayList<Category>>>
 
     @GET("/v1/spy/categories/{id}")
-    fun getRandomWordWithCategory(@Path("id") categoryId: Long): Observable<Response<Word>>
-
+    fun getRandomWordWithCategory(@Path("id") categoryId: Int): Observable<Response<Word>>
 
 }

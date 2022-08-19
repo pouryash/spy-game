@@ -118,7 +118,7 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginStart="@dimen/standard_margin_x"
-                android:src="@drawable/ic_baseline_remove_red_eye"
+                android:src="@drawable/ic_baseline_eye"
                 app:layout_constraintLeft_toRightOf="@id/txt_spies_num"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
