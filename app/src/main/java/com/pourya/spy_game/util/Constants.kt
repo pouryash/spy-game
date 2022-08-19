@@ -2,6 +2,8 @@ package com.pourya.spy_game.util
 
 object Constants {
 
+    const val BASE_URL = " https://hamispy.paye.studio"
+    const val KEY_CATEGORY_MODEL = "key_category_model"
     const val SPY_SHARED_PREF_NAME = "spy_shared_pref"
     const val SPIES_NUM_VALUE = "spies_num_value"
     const val PLAYERS_NUM_VALUE = "players_num_value"

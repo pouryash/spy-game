@@ -3,6 +3,7 @@
     <string name="player_num">Number Of Players</string>
     <string name="spies_num">Number Of Spies</string>
     <string name="timer">Timer</string>
+    <string name="category">Category</string>
     <string name="start_game">Start</string>
     <string name="confirm_game_config">Confirm</string>
     <string name="specify_player_number">Specify the Number of players in the game</string>
@@ -10,4 +11,7 @@
     <string name="specify_game_time">Specify the time of the game</string>
     <string name="return_card">Return your card</string>
     <string name="choose_role_hint">Return your card and tap again to hide your card then pass the phone</string>
+    <string name="user_not_connected_to_internet">you are not connected to internet</string>
+    <string name="server_connection_failed">server connection failed</string>
+    <string name="connection_error">connection error</string>
 </resources>

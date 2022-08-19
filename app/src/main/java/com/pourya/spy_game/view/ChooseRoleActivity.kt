@@ -1,4 +1,4 @@
-package com.pourya.spy_game
+package com.pourya.spy_game.view
 
 import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
@@ -8,12 +8,17 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.animation.doOnEnd
 import androidx.core.view.isVisible
+import com.pourya.spy_game.R
 import com.pourya.spy_game.databinding.ActivityChooseRoleBinding
+import com.pourya.spy_game.util.SharedPreferenceManager
+import com.pourya.spy_game.util.extentions.toast
+import org.koin.android.ext.android.inject
 
 class ChooseRoleActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityChooseRoleBinding
     private var isCardAnimationEnd = true
+    private val sharedPreferenceManager : SharedPreferenceManager by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +27,10 @@ class ChooseRoleActivity : AppCompatActivity() {
         setContentView(binding.root)
         setupViews()
         changeCameraDistance()
+
+        if (sharedPreferenceManager.getCategory() != null){
+            toast(sharedPreferenceManager.getCategory().name)
+        }
 
     }
 

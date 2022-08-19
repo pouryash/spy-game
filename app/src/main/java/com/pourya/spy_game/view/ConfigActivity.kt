@@ -1,4 +1,4 @@
-package com.pourya.spy_game
+package com.pourya.spy_game.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import com.mcdev.quantitizerlibrary.AnimationStyle
 import com.mcdev.quantitizerlibrary.QuantitizerListener
+import com.pourya.spy_game.R
 import com.pourya.spy_game.databinding.ActivityConfigBinding
 import com.pourya.spy_game.databinding.ActivityMainBinding
 import com.pourya.spy_game.util.Constants
