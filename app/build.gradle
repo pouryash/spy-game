@@ -13,6 +13,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+
     }
 
     buildTypes {
@@ -31,6 +33,16 @@ android {
     buildFeatures {
         dataBinding = true
         viewBinding true
+    }
+
+    flavorDimensions "spy"
+    productFlavors {
+
+        releaseFlavor {
+            dimension "spy"
+            buildConfigField("String", "TAPSELL_KEY", "")
+        }
+
     }
 }
 
@@ -73,5 +85,7 @@ dependencies {
     implementation 'io.reactivex:rxandroid:1.2.1'
     //splash
     implementation 'com.jaredrummler:animated-svg-view:1.0.6'
+    //tapsell
+    implementation 'ir.tapsell.plus:tapsell-plus-sdk-android:2.1.7'
 
 }

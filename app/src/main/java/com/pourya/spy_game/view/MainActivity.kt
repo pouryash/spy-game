@@ -2,28 +2,95 @@ package com.pourya.spy_game.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import com.pourya.spy_game.R
 import com.pourya.spy_game.databinding.ActivityMainBinding
 import com.pourya.spy_game.util.Constants
+import com.pourya.spy_game.util.Constants.ZONE_ID_STANDARD_BANNER_MAIN_BANNER
 import com.pourya.spy_game.util.SharedPreferenceManager
+import ir.tapsell.plus.AdShowListener
+import ir.tapsell.plus.TapsellPlus
+import ir.tapsell.plus.TapsellPlusBannerType
+import ir.tapsell.plus.model.TapsellPlusAdModel
+import ir.tapsell.plus.model.TapsellPlusErrorModel
+
+
 import org.koin.android.ext.android.inject
+
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val sharedPreferenceManager: SharedPreferenceManager by inject()
+    private var standardBannerResponseId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
+
+        requestTapsellBanner()
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         init()
         setupViews()
         updateValues()
+    }
+
+    /**
+     * this method request to display ad
+     */
+    private fun requestTapsellBanner() {
+        TapsellPlus.requestStandardBannerAd(
+            this, ZONE_ID_STANDARD_BANNER_MAIN_BANNER,
+            TapsellPlusBannerType.BANNER_320x50, object : ir.tapsell.plus.AdRequestCallback() {
+                override fun response(tapsellPlusAdModel: TapsellPlusAdModel) {
+                    super.response(tapsellPlusAdModel)
+                    standardBannerResponseId = tapsellPlusAdModel.responseId.toString()
+                    //Ad is ready to show
+                    setupTapsellBanner(tapsellPlusAdModel)
+                }
+
+                override fun error(error: String) {
+                    super.error(error)
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        requestTapsellBanner()
+                    }, 10000)
+                }
+            })
+    }
+
+    /**
+     * this method display add in activity
+     */
+    private fun setupTapsellBanner(tapsellPlusAdModel: TapsellPlusAdModel) {
+        TapsellPlus.showStandardBannerAd(this, tapsellPlusAdModel.responseId,
+            findViewById(R.id.standardBannerMain),
+            object : AdShowListener() {
+                override fun onOpened(tapsellPlusAdModel: TapsellPlusAdModel) {
+                    super.onOpened(tapsellPlusAdModel)
+                }
+
+                override fun onError(tapsellPlusErrorModel: TapsellPlusErrorModel) {
+                    super.onError(tapsellPlusErrorModel)
+                }
+            })
+    }
+
+    /**
+     * this method destroy ad
+     */
+    private fun destroyAd() {
+        standardBannerResponseId?.let {
+            TapsellPlus.destroyStandardBanner(
+                this,
+                standardBannerResponseId,
+                findViewById(R.id.standardBannerMain)
+            )
+        }
     }
 
     private fun init() {
@@ -86,6 +153,11 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         updateValues()
+    }
+
+    override fun onDestroy() {
+        destroyAd()
+        super.onDestroy()
     }
 
 }
