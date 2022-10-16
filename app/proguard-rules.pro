@@ -20,7 +20,9 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
-
+#Spy
+# Application classes that will be serialized/deserialized over Gson
+-keep class com.pourya.spy_game.model.** { *; }
 
 ##---------------Begin: proguard configuration for Gson  ----------
 # Gson uses generic type information stored in a class file when working with fields. Proguard
@@ -33,18 +35,42 @@
 # Gson specific classes
 -dontwarn sun.misc.**
 #-keep class com.google.gson.stream.** { *; }
-
-# Application classes that will be serialized/deserialized over Gson
--keep class com.google.gson.examples.android.model.** { *; }
+# Prevent R8 from leaving Data object members always null
+-keepclassmembers,allowobfuscation class * {
+  @com.google.gson.annotations.SerializedName <fields>;
+}
 
 # Prevent proguard from stripping interface information from TypeAdapterFactory,
 # JsonSerializer, JsonDeserializer instances (so they can be used in @JsonAdapter)
+-keep class * implements com.google.gson.TypeAdapter
 -keep class * implements com.google.gson.TypeAdapterFactory
 -keep class * implements com.google.gson.JsonSerializer
 -keep class * implements com.google.gson.JsonDeserializer
 
 ##---------------End: proguard configuration for Gson  ----------
 
+
+# RxJava
+-keep class rx.schedulers.Schedulers {
+    public static <methods>;
+}
+-keep class rx.schedulers.ImmediateScheduler {
+    public <methods>;
+}
+-keep class rx.schedulers.TestScheduler {
+    public <methods>;
+}
+-keep class rx.schedulers.Schedulers {
+    public static ** test();
+}
+-keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
+    long producerIndex;
+    long consumerIndex;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode producerNode;
+    rx.internal.util.atomic.LinkedQueueNode consumerNode;
+}
 
 ##---------------Begin: proguard configuration for Retrofit  ----------
 # Retrofit does reflection on generic parameters. InnerClasses is required to use Signature and
@@ -153,7 +179,7 @@
 -keepnames class * extends android.app.Activity
 -keep class ir.tapsell.plus.model.** { *; }
 -keep class ir.tapsell.sdk.models.** { *; }
-
+-keep class com.google.gson.examples.android.model.** { <fields>; }
 -keep class ir.tapsell.sdk.nativeads.TapsellNativeVideoAdLoader$Builder {*;}
 -keep class ir.tapsell.sdk.nativeads.TapsellNativeBannerAdLoader$Builder {*;}
 

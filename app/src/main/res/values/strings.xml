@@ -14,4 +14,5 @@
     <string name="user_not_connected_to_internet">you are not connected to internet</string>
     <string name="server_connection_failed">server connection failed</string>
     <string name="connection_error">connection error</string>
+    <string name="choose_category_hint">choose one category or by default all will be selected</string>
 </resources>

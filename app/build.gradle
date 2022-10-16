@@ -14,13 +14,33 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
+    }
 
+    def keystoreRelease = file(project.property('project.releaseSigningProperties'))
+    Properties rProps = new Properties()
+    rProps.load(new FileInputStream(keystoreRelease))
+    signingConfigs {
+        releaseConfig {
+            storeFile file(rProps['keystore'])
+            storePassword rProps['keystore.storePassword']
+            keyPassword rProps['keystore.keyPassword']
+            keyAlias rProps['keystore.keyAlias']
+        }
     }
 
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
+            debuggable true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true
+            debuggable false
+            shrinkResources true
+            crunchPngs = true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.releaseConfig
         }
     }
     compileOptions {
@@ -34,16 +54,20 @@ android {
         dataBinding = true
         viewBinding true
     }
-
+    lintOptions {
+        checkReleaseBuilds false
+    }
     flavorDimensions "spy"
     productFlavors {
 
         releaseFlavor {
             dimension "spy"
-            buildConfigField("String", "TAPSELL_KEY", "")
+            buildConfigField("String", "TAPSELL_KEY", "\"orpcqjapfqdljqfnbeegfidshmqegqnafsaporfbqgcqrdpfbepqmfegcfhtnnqcpggqdn\"")
+            signingConfig signingConfigs.releaseConfig
         }
 
     }
+
 }
 
 dependencies {
